@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+    <head>
+        <script src='//code.jquery.com/jquery-1.7.2.min.js'></script>
+        <script src='//localhost:3000/socket.io/socket.io.js'></script>
+        <script>
+            var socket = io.connect('//localhost:3000');
+
+            socket.on('message', function(data) {
+              $('#messages').append('<li>' + JSON.stringify(data, undefined, 2) + '</li>');
+              console.log(arguments)
+            });
+            
+            socket.on('error', function() { console.error(arguments) });
+        </script>
+    </head>
+    <body>
+        <ul id='messages'></ul>
+    </body>
+</html>
